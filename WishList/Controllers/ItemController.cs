@@ -35,17 +35,14 @@ namespace WishList.Controllers
         {
             _context.Items.Add(model);
             _context.SaveChanges();
-
             return RedirectToAction("Index");            
         }
 
         public IActionResult Delete(int id)
         {
-            var itemList = _context.Items.ToList();
-            var item = itemList.Find(a => a.Id == id);
+            var item = _context.Items.FirstOrDefault(a => a.Id == id);
             _context.Items.Remove(item);
             _context.SaveChanges();
-
             return RedirectToAction("Index");
         }
     }
